@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bot</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <th>Commodity</th>
+            <th>%</th>
+            <th>price</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="commodity"></td>
+                <td id="rise"></td>
+                <td id="price"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="axios.min.js"></script>
+    <script>
+        var td = document.querySelectorAll('td');
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'http://localhost:8000/', true);
+        xhr.responseType = 'document';
+
+        xhr.onload = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseXML.querySelectorAll('.coin');
+
+                console.log(response);
+                
+            }  
+        };
+
+        xhr.onerror = function() {
+            console.error(xhr.status, xhr.statusText);
+        };
+
+        xhr.send();
+    </script>
+</body>
+
+</html>
